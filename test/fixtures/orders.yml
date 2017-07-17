@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  custumer_name: MyString
+  ponumber: 1
+  payable: MyString
+  status: MyString
+
+two:
+  custumer_name: MyString
+  ponumber: 1
+  payable: MyString
+  status: MyString
