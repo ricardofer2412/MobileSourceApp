@@ -10,15 +10,20 @@
       </ul>
     </div>
   <% end %>
+  <div class="field">
+    <%= form.label :ponumber %>
+    <%= form.number_field :ponumber, id: :order_ponumber %>
+  </div>
 
   <div class="field">
     <%= form.label :custumer_name %>
     <%= form.text_field :custumer_name, id: :order_custumer_name %>
   </div>
 
+
   <div class="field">
-    <%= form.label :ponumber %>
-    <%= form.number_field :ponumber, id: :order_ponumber %>
+    <%= form.label :email%>
+    <%= form.text_field :email, id: :order_email %>
   </div>
 
   <div class="field">
@@ -29,6 +34,10 @@
   <div class="field">
     <%= form.label :status %>
     <%= form.text_field :status, id: :order_status %>
+  </div>
+  <div class="field">
+    <%= form.label :customerNotes %>
+    <%= form.text_field :customerNotes, id: :order_customerNotes %>
   </div>
 
   <div class="actions">
