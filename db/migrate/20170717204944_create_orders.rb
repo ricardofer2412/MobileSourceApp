@@ -5,7 +5,7 @@ class CreateOrders < ActiveRecord::Migration[5.1]
       t.integer :ponumber
       t.string :payable
       t.string :status
-
+    
 
       t.timestamps
     end

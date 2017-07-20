@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718040810) do
+ActiveRecord::Schema.define(version: 20170720211151) do
 
   create_table "orders", force: :cascade do |t|
     t.string "custumer_name"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20170718040810) do
     t.datetime "updated_at", null: false
     t.string "customerNotes"
     t.string "email"
+    t.string "terms"
+    t.date "expectedDate"
   end
 
 end
