@@ -34,5 +34,11 @@
   <strong>Customer Notes:</strong>
   <%= @order.customerNotes%>
 </p>
+<p>
+  <strong>ExpectedDate</strong>
+  <%= @order.expectedDate%>
+</p>
+
+
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
