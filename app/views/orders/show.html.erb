@@ -36,12 +36,16 @@
 </p>
 <p>
   <strong>ExpectedDate</strong>
-  <%= @order.expectedDate%>
+  <%= @order.expectedDate.strftime("%m-%d-%Y")%>
 </p>
 <p>
   <strong>Received Date</strong>
-  <%= @order.receivedDate%>
+  <%= @order.receivedDate.strftime("%m-%d-%Y")%>
 </p>
+<p>
+  <strong>Last Update </strong>
+    <%= @order.updated_at.strftime("%m-%d-%Y") %></p>
+  </p>
 
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
