@@ -1,5 +1,7 @@
 
-
+<script>
+$('#datepicker').datepicker({format: 'yyyy-mm-dd'});
+</script>
 
   <div class:'container'>
 <%= form_with(model: order, local: true) do |form| %>
@@ -44,24 +46,13 @@
         <div class="field">
           <%= form.text_field :payable, id: :order_payable %>
         </div>
-</div>
-
-
-
+      </div>
 <div class="form-group">
   <label for="formGroupExampleInput">Status</label>
   <div class="field">
     <%= form.select :status, [ 'Quoted','Received','Tested','@Gerry', '@Amalia','@Richard',  'Entered', 'Waiting for Customer Approval', 'Customer Approved', 'Paid' ], :prompt => 'Select One' %>
   </div>
 </div>
-
-<div class="form-group">
-  <label for="formGroupExampleInput">Customer Notes</label>
-  <div class="field">
-    <%= form.text_field :customerNotes, id: :order_customerNotes %>
-  </div>
-</div>
-
 <div class="form-group">
   <label for="formGroupExampleInput">Payment Type</label>
   <div class="field">
@@ -71,22 +62,23 @@
 <div class="form-group">
   <label for="formGroupExampleInput">Expected Date</label>
   <div class="field">
-
-    <%= form.datetime_select :expectedDate %>
+    <%= form.date_field :expectedDate%>
   </div>
 </div>
 <div class="form-group">
   <label for="formGroupExampleInput">Received Date </label>
   <div class="field">
-
-    <%= form.datetime_select :receivedDate %>
-
+      <%= form.date_field :receivedDate%>
   </div>
 </div>
-
-
+<div class="form-group">
+  <label for="formGroupExampleInput">Customer Notes</label>
+  <div class="field">
+    <%= form.text_field :customerNotes, id: :order_customerNotes %>
+  </div>
+</div>
   <div class="actions" class="label label-default">
-    <%= form.submit %> <br> 
+    <%= form.submit %> <br>
   </div>
 
 </div>

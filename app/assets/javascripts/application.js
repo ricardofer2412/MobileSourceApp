@@ -16,4 +16,5 @@
 //= require_self
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require bootstrap-datepicker
 //= require_tree .
