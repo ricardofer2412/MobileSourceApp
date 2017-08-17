@@ -4,37 +4,36 @@ $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
 </script>
 
   <div class:'container'>
-<%= form_with(model: order, local: true) do |form| %>
-  <% if order.errors.any? %>
-
-    <div id="error_explanation">
-      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-      <ul>
-      <% order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+    <%= form_with(model: order, local: true) do |form| %>
+    <% if order.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+          <ul>
+            <% order.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
   <% end %>
 
   <form>
-    <div class="form-group">
-      <label for="formGroupExampleInput">PO Number</label>
+    <div class="container">
+    <div class= "row">
+      <div class= "col col-md-4">
+        <div class="form-group">
+          <label for="formGroupExampleInput">PO Number</label>
         <div class="field">
           <%= form.number_field :ponumber, id: :order_ponumber %>
         </div>
-      </div>
-
-
-      <div class="form-group">
+        </div>
+        <div class="form-group">
         <label for="formGroupExampleInput">Customer Name</label>
         <div class="field">
           <%= form.text_field :custumer_name, id: :order_custumer_name %>
         </div>
       </div>
 
-      <div class="form-group">
+        <div class="form-group">
         <label for="formGroupExampleInput">E-mail</label>
         <div class="field">
           <%= form.text_field :email, id: :order_email %>
@@ -47,41 +46,52 @@ $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
           <%= form.text_field :payable, id: :order_payable %>
         </div>
       </div>
-<div class="form-group">
-  <label for="formGroupExampleInput">Status</label>
-  <div class="field">
-    <%= form.select :status, [ 'Quoted','Received','Tested','@Gerry', '@Amalia','@Richard',  'Entered', 'Waiting for Customer Approval', 'Customer Approved', 'Paid' ], :prompt => 'Select One' %>
-  </div>
-</div>
-<div class="form-group">
-  <label for="formGroupExampleInput">Payment Type</label>
-  <div class="field">
-    <%= form.select :terms, [ 'Cash','Check','Paypal' ], :prompt => 'Select One' %>
-  </div>
-</div>
-<div class="form-group">
+    </div>
+
+      <div class="col col-md-4">
+      <div class="form-group">
+        <label for="formGroupExampleInput">Status</label>
+          <div class="field">
+          <%= form.select :status, [ 'Quoted','Received','Tested','@Gerry', '@Amalia','@Richard',  'Entered', 'Waiting for Customer Approval', 'Customer Approved', 'Paid' ], :prompt => 'Select One' %>
+          </div>
+        </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Payment Type</label>
+        <div class="field">
+          <%= form.select :terms, [ 'Cash','Check','Paypal' ], :prompt => 'Select One' %>
+          </div>
+      </div>
+    </div>
+      <div class="col col-md-4">
+      <div class="form-group">
   <label for="formGroupExampleInput">Expected Date</label>
   <div class="field">
     <%= form.date_field :expectedDate%>
   </div>
 </div>
-<div class="form-group">
-  <label for="formGroupExampleInput">Received Date </label>
-  <div class="field">
-      <%= form.date_field :receivedDate%>
-  </div>
-</div>
-<div class="form-group">
-  <label for="formGroupExampleInput">Customer Notes</label>
-  <div class="field">
-    <%= form.text_field :customerNotes, id: :order_customerNotes %>
-  </div>
-</div>
+      <div class="form-group">
+          <label for="formGroupExampleInput">Received Date </label>
+            <div class="field">
+                <%= form.date_field :receivedDate%>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput">Customer Notes</label>
+                <div class="field">
+                    <%= form.text_field :customerNotes, id: :order_customerNotes %>
+                  </div>
+                </div>
+              </div>
+              </div>
   <div class="actions" class="label label-default">
     <%= form.submit %> <br>
   </div>
+</div>
+</div>
 
-</div>
-</div>
 </form>
+</div>
+
+
+
 <% end %>
