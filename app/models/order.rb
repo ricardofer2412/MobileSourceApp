@@ -3,7 +3,7 @@ class Order < ApplicationRecord
 
   def self.search(search)
     if search
-    where(['custumer_name LIKE ?',"%#{search}%"])
+    where(['custumer_name ILIKE ?',"%#{search}%"])
   else
       all
     end
