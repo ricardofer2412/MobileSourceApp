@@ -5,15 +5,6 @@ GIT
     remotipart (1.3.1)
 
 GIT
-  remote: https://github.com/rails/webpacker.git
-  revision: cf5f8ba99a4e684bf74868a4ec65e24bcc9edaa8
-  specs:
-    webpacker (3.0.1)
-      activesupport (>= 4.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 4.2)
-
-GIT
   remote: https://github.com/sferik/rails_admin.git
   revision: c3794fee412e8cc6c9a5038edcaf179199f524c6
   specs:
@@ -177,8 +168,6 @@ GEM
     rack-pjax (1.0.0)
       nokogiri (~> 1.5)
       rack (>= 1.1)
-    rack-proxy (0.6.2)
-      rack
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
     rails (5.1.4)
@@ -304,7 +293,6 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
-  webpacker!
 
 RUBY VERSION
    ruby 2.3.3p222
