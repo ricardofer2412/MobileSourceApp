@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'jquery-rails'
-gem 'webpacker'
+gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
@@ -20,7 +20,7 @@ group :development do
   gem 'sqlite3'
 end
 
- gem 'themify-icons-rails' , github: 'scratch-soft/themify-icons-rails'
+
 gem 'simple_form'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
