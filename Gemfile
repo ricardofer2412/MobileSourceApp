@@ -20,7 +20,7 @@ group :development do
   gem 'sqlite3'
 end
 
-
+ gem 'themify-icons-rails' , github: 'scratch-soft/themify-icons-rails'
 gem 'simple_form'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -66,3 +66,4 @@ gem 'devise', '~> 4.2'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
+gem 'simple-line-icons-rails'

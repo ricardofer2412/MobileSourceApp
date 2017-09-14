@@ -2,8 +2,6 @@
 <script>
 $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
 </script>
-
-  <div class:'container'>
     <%= form_with(model: order, local: true) do |form| %>
     <% if order.errors.any? %>
         <div id="error_explanation">
@@ -15,52 +13,77 @@ $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
             </ul>
           </div>
   <% end %>
+  <div class="col-xs-12">
+    <div id="invoice-wrap">
+      <div class='container'>
+          <div class="row">
+            <div class="col-xs-12">
+              <h3 class="page-header">PURCHASE ORDER<small class="pull-right"> <span class="invoice_header_date"></span></small></h3>
+            </div>
+            </div>
 
   <form>
     <div class="container">
-    <div class= "row">
-      <div class= "col col-md-4">
-        <div class="form-group">
-          <label for="formGroupExampleInput">PO Number</label>
-        <div class="field">
+      <div class= "row invoice-info">
+
+
+        <div class= "col col-md-4">
+          <div class="form-group">
+            <label for="formGroupExampleInput">PO Number</label>
+          <div class="field">
           <%= form.number_field :ponumber, id: :order_ponumber %>
-        </div>
+          </div>
         </div>
         <div class="form-group">
-        <label for="formGroupExampleInput">Customer Name</label>
-        <div class="field">
+          <label for="formGroupExampleInput">Payable To:</label>
+          <div class="field">
+            <%= form.text_field :payable, id: :order_payable %>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput">Customer Name</label>
+          <div class="field">
           <%= form.text_field :custumer_name, id: :order_custumer_name %>
         </div>
       </div>
 
         <div class="form-group">
-        <label for="formGroupExampleInput">E-mail</label>
-        <div class="field">
+          <label for="formGroupExampleInput">E-mail</label>
+          <div class="field">
           <%= form.text_field :email, id: :order_email %>
-        </div>
+          </div>
       </div>
 
-      <div class="form-group">
-        <label for="formGroupExampleInput">Payable To:</label>
-        <div class="field">
-          <%= form.text_field :payable, id: :order_payable %>
-        </div>
-      </div>
+        <div class="form-group">
+            From
+            <address>
+       <input class="form-control" id= "2"  placeholder="address line 1" />
+       <input class="form-control" id= "3"  placeholder="address line 2" />
+       <input class="form-control" id= "4"  placeholder="address line 3" />
+     </address>
+   </div><!-- /.col -->
+
+
+
     </div>
 
+    <!-- Column #2 -->
+
       <div class="col col-md-4">
-      <div class="form-group">
-        <label for="formGroupExampleInput">Status</label>
-          <div class="field">
-          <%= form.select :status, [ 'Quoted','Received','Tested','@Gerry', '@Amalia','@Richard',  'Entered', 'Waiting for Customer Approval', 'Customer Approved', 'Paid' ], :prompt => 'Select One' %>
-          </div>
-        </div>
-      <div class="form-group">
+         <form class="form-horizontal">
+           <div class="form-group">
+             <label for="formGroupExampleInput">Status</label>
+             <div class="field">
+               <%= form.select :status, [ 'Quoted','Received','Tested','@Gerry', '@Amalia','@Richard',  'Entered', 'Waiting for Customer Approval', 'Customer Approved', 'Paid' ], :prompt => 'Select One' %>
+             </div>
+           </div>
+        <div class="form-group">
         <label for="formGroupExampleInput">Payment Type</label>
         <div class="field">
           <%= form.select :terms, [ 'Cash','Check','Paypal' ], :prompt => 'Select One' %>
           </div>
       </div>
+    </form>
     </div>
       <div class="col col-md-4">
       <div class="form-group">
@@ -89,6 +112,64 @@ $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
                 </div>
               </div>
               </div>
+
+              <div class="row">
+                <div class="col-xs-10 table-responsive">
+                  <hr>
+                  <table class="table table-hover" id="items">
+
+                    <thead>
+                        <th class="item-name">Item</th>
+                        <th class="description">Description</th>
+                        <th class="unit">Unit Cost</th>
+                        <th class="quantity">Quantity</th>
+                        <th class="units">Price</th>
+                        <th class="no_print">Actions</th>
+                    </thead>
+
+                    <tbody>
+                      <tr class="item-row">
+                        <td><input class="form-control item_name" placeholder="Item 1 " /></td>
+                        <td><input class="form-control item_desc" placeholder="Description" /></td>
+                        <td><input class="form-control cost" value="0.00" /></td>
+                        <td><input class="form-control qty" value="1" /></td>
+                        <td class="price_td"><span class="price">0.00</span><span class="subtotal_currency"></span></td>
+                        <td class="delete_td"><a class="delete" href="javascript:;" title="Remove row"><span class="icon-minus"></span></a></td>
+                      </tr>
+
+                      <tr class="item-row">
+                        <td><input class="form-control item_name" placeholder="Item " /></td>
+                        <td><input class="form-control item_desc" placeholder="Description" /></td>
+                        <td><input class="form-control cost" value="0.00" /></td>
+                        <td><input class="form-control qty" value="1" /></td>
+                        <td class="price_td"><span class="price">0.00</span><span class="subtotal_currency"></span></td>
+                        <td class="delete_td"><a class="delete" href="javascript:;" title="Remove row"><span class="icon-minus"></span></a></td>
+                      </tr>
+
+                      <tr id="hiderow">
+                        <td colspan="6"><a id="addrow" class="btn btn-success btn-sm" href="javascript:;" title="Add a row"><span class="ti-plus"></span>  Add a row</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-4 col-xs-offset-4">
+                  <div class="table-responsive">
+                    <table class="table table-hover" id="totals">
+
+                      <tr>
+                        <th>Total:</th>
+                        <td class="balance"><span class="due" id="invoice_total">0.00</span><span class="subtotal_currency"></span></td>
+
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
                     <div class="actions" class="label label-default">
                         <%= form.submit %> <br>
                     </div>
@@ -96,7 +177,5 @@ $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
                 </div>
               </form>
             </div>
-
-
 
 <% end %>

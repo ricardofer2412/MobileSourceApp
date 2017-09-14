@@ -33,7 +33,7 @@
         <td><%= order.email %></td>
         <td><%= order.status %></td>
         <td><%= order.terms %></td>
-        <td><%= order.updated_at.strftime("%m-%d-%Y")%></td>
+        <td><%= order.updated_at%></td>
         <td><%= order.payment_sent%></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>

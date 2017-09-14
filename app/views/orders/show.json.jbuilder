@@ -1,1 +1,1 @@
-json.partial! "orders/order", order: @order
+json.extract! "orders/order", order: @order

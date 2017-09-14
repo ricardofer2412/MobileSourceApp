@@ -4,5 +4,6 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_devise_bootstrap_views
  *= require_self
+ *= require simple-line-icons
  *= require_tree .
 */
