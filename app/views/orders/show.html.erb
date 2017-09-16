@@ -38,19 +38,19 @@
 </p>
 <p>
   <strong>ExpectedDate:</strong>
-  <%= @order.expectedDate.strftime("%m-%d-%Y")%>
+  <%= @order.expectedDate.try(:strftime,"%m-%d-%Y")%>
 </p>
 <p>
   <strong>Received Date:</strong>
-  <%= @order.receivedDate.strftime("%m-%d-%Y")%>
+  <%= @order.receivedDate.try(:strftime,"%m-%d-%Y")%>
 </p>
 <p>
   <strong>Last Updated: </strong>
-    <%= @order.updated_at.strftime("%m-%d-%Y") %></p>
+    <%= @order.updated_at.try(:strftime,"%m-%d-%Y")%></p>
   </p>
   <p>
     <strong>Payment Sent On: </strong>
-      <%= @order.payment_sent.strftime("%m-%d-%Y") %></p>
+      <%= @order.payment_sent.try(:strftime,"%m-%d-%Y") %></p>
     </p>
       <p>
     <strong>Customer Notes:</strong>
