@@ -67,7 +67,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'simple-line-icons-rails'
 gem 'remotipart', github: 'mshibuya/remotipart'
-gem 'rails_admin', github: 'sferik/rails_admin'
-gem 'rails_admin_rollincode', '~> 1.0'
+
 gem "will_paginate", "~> 3.0.4"
 gem 'will_paginate-bootstrap'
