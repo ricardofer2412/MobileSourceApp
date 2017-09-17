@@ -27,6 +27,10 @@
           <div class="col-xs-6"><label>Payable To:</label></div>
           <div class="col-xs-8 invoice_num"><span id="invoice_number">  </span><%= f.input_field :payable,  class:"form-control" %></div>
         </div>
+        <div class="form-group">
+          <div class="col-xs-6"><label>E-Mail</label></div>
+          <div class="col-xs-8 invoice_num"><span id="invoice_number">  </span><%= f.input_field :email,  class:"form-control" %></div>
+        </div>
       </div><!-- /.col -->
       <div class="col-xs-4 invoice-col">
 
@@ -35,32 +39,28 @@
         <form class="form-horizontal">
 
           <div class="form-group">
-            <div class="col-xs-6"><label>Invoice #</label></div>
+            <div class="col-xs-6"><label>PO #:</label></div>
             <div class="col-xs-8 invoice_num"><span id="invoice_number">  </span><%= f.input_field :ponumber,  class:"form-control" %></div>
           </div>
           <div class="col-xs-12"></div>
           <div class="form-group">
-            <div class="col-xs-6"><%= f.label :due_date, required: false %></div>
+            <div class="col-xs-6"><label>Due Date:</label></div>
             <div class="col-xs-8"><%= f.input_field :due_date, class: "form-control datepicker", as: :string, id: "invoice_date" %></div>
           </div>
           <div class="col-xs-12"></div>
           <div class="form-group">
-            <div class="col-xs-6"><%= f.label :expectedDate, required: false %></div>
+          <div class="col-xs-6"><label>Expected Date:</label></div>
             <div class="col-xs-8"><%= f.input_field :expectedDate, class: "form-control datepicker", as: :string, id: "invoice_date" %></div>
           </div>
 
           <div class="col-xs-12"></div>
           <div class="form-group">
-            <div class="col-xs-6"><%= f.label :payment_sent, required: false %></div>
+        <div class="col-xs-6"><label>Payment Sent</label></div>
             <div class="col-xs-8"><%= f.input_field :payment_sent, class: "form-control datepicker", as: :string, id: "invoice_date" %></div>
           </div>
 
 
-          <div class="col-xs-12"></div>
-          <div class="form-group">
-            <div class="col-xs-5 invoice_space"><label>Quoted Amount</label></div>
-            <div class="col-xs-7 invoice_space bold" style="text-align:right; padding-top:7px"><span class="due">0.00</span><span class="subtotal_currency"></span></div>
-          </div>
+
         </form>
       </div><!-- /.col -->
     </div><!-- /.row -->
