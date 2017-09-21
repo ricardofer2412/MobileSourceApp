@@ -37,15 +37,19 @@
       </div><!-- /.col -->
       <div class="col-xs-4 invoice-col">
         <form class="form-horizontal">
-
+          <div class="form-group">
+            <div class="col-xs-6"><label>Status:</label></div>
+            <div class="col-xs-8"><%= f.input_field :status, collection: ["QUOTED","RECEIVED","ENTERED","TESTED","WAITING FOR APPROVAL", "PAYMENT SENT", "PAID"] %></div>
+          </div>
           <div class="form-group">
             <div class="col-xs-6"><label>PO #:</label></div>
             <div class="col-xs-8 invoice_num"><span id="invoice_number">  </span><%= f.input_field :ponumber,  class:"form-control" %></div>
           </div>
+
           <div class="col-xs-12"></div>
           <div class="form-group">
-            <div class="col-xs-6"><label>Due Date:</label></div>
-            <div class="col-xs-8"><%= f.input_field :due_date, class: "form-control datepicker", as: :string, id: "invoice_date" %></div>
+            <div class="col-xs-6"><label>Received Date:</label></div>
+            <div class="col-xs-8"><%= f.input_field :receivedDate, class: "form-control datepicker", as: :string, id: "invoice_date" %></div>
           </div>
           <div class="col-xs-12"></div>
           <div class="form-group">
@@ -57,6 +61,14 @@
           <div class="form-group">
         <div class="col-xs-6"><label>Payment Sent</label></div>
             <div class="col-xs-8"><%= f.input_field :payment_sent, class: "form-control datepicker", as: :string, id: "invoice_date" %></div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-6"><label>Tracking In:</label></div>
+            <div class="col-xs-8 invoice_num"><span id="invoice_number">  </span><%= f.input_field :incoming_tracking,  class:"form-control" %></div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-6"><label>Tracking Out:</label></div>
+            <div class="col-xs-8 invoice_num"><span id="invoice_number">  </span><%= f.input_field :outgoing_tracking,  class:"form-control" %></div>
           </div>
 
 
