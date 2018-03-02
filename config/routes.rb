@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :h2o_customers
+  resources :h2o_re_ups
   devise_for :users
   resources :orders
 

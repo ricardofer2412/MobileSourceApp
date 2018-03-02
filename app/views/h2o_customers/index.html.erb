@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>H2o Customers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Companyname</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @h2o_customers.each do |h2o_customer| %>
+      <tr>
+        <td><%= h2o_customer.companyName %></td>
+        <td><%= link_to 'Show', h2o_customer %></td>
+        <td><%= link_to 'Edit', edit_h2o_customer_path(h2o_customer) %></td>
+        <td><%= link_to 'Destroy', h2o_customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New H2o Customer', new_h2o_customer_path %>
