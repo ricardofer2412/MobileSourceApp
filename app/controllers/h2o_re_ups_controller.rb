@@ -5,6 +5,7 @@ class H2oReUpsController < ApplicationController
   # GET /h2o_re_ups.json
   def index
     @h2o_re_ups = H2oReUp.where(["simCard LIKE ?" , "%#{params[:search]}%"])
+    @h2o_re_ups = H2oReUp.order(params[:sort] + "  " + params[:direction])
   end
 
   # GET /h2o_re_ups/1
