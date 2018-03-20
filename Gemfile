@@ -10,6 +10,8 @@ end
 gem 'jquery-rails'
 
 gem 'watir'
+gem "thor"
+gem "chromedriver-helper"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
 
