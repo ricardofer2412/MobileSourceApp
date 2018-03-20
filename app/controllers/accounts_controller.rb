@@ -84,7 +84,7 @@ class AccountsController < ApplicationController
         account.update_attribute(:phoneNumber, phoneNumber)
         account.update_attribute(:expirationDate, expiration)
         sleep(1)
-        redirect_to accounts_path
+        redirect_to accounts_path and return
 
 
       end
