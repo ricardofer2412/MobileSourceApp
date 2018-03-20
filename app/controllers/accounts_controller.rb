@@ -55,13 +55,13 @@ class AccountsController < ApplicationController
 
         if browser.element(:xpath, "//*[@id='rep_error_note']").text == "Cancelled"
           phoneNumber = browser.element(:xpath, "//*[@id='rep_error_mdn']").text
+          accountStatus =  browser.element(:xpath, "//*[@id='rep_error_note']").text
         else
           phoneNumber = browser.element(:xpath, "//*[@id='rep_gsm_mdn']").text
+          accountStatus = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
         end
         sleep(1)
-        accountStatus = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
-        expiredAccount =  browser.element(:xpath, "//*[@id='rep_error_note']").text
-        sleep(1)
+
 
         browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbBalance"
 
@@ -75,15 +75,10 @@ class AccountsController < ApplicationController
         #collect Data
         balance = browser.element(:xpath, "//*[@id='fcard_bal']").text
         expiration = browser.element(:xpath, "//*[@id='exp']").text
-        puts "SimCard Number:" + simcardNumber
-        puts "Phone Number: " + phoneNumber
-        puts "Account Balance: " + balance
-        puts "Expiration Date: " + expiration
-        puts "Account Status: " + accountStatus
-        puts expiredAccount
+
+        #Update Account
         account.update_attribute(:balance, balance)
         account.update_attribute(:accountStatus, accountStatus)
-        account.update_attribute(:accountStatus, expiredAccount)
         account.update_attribute(:phoneNumber, phoneNumber)
         account.update_attribute(:expirationDate, expiration)
         sleep(1)
