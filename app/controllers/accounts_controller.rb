@@ -83,6 +83,8 @@ class AccountsController < ApplicationController
         account.update_attribute(:accountStatus, expiredAccount)
         account.update_attribute(:phoneNumber, phoneNumber)
         account.update_attribute(:expirationDate, expiration)
+        sleep(1)
+        redirect_to accounts_path
 
 
       end
