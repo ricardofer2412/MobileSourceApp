@@ -17,7 +17,7 @@ class AccountsController < ApplicationController
     @account = Account.new
   end
   def fetch_balance
-    
+
     require 'watir'
     require 'nokogiri'
     require 'open-uri'
@@ -35,7 +35,7 @@ class AccountsController < ApplicationController
         simcardNumber = account.simcardNumber
 
         #open Browser
-        browser = Watir::Browser.new :chrome, headless: true
+        browser = Watir::Browser.new :phantomjs
         browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbEquip"
 
         #Login
