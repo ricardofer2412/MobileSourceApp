@@ -1,2 +1,0 @@
-module H2oCustomersHelper
-end

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  balance: MyString
+  expirationDate: MyString
+  accountStatus: MyString
+  expiredAccount: MyString
+  simcardNumber: MyString
+  phoneNumber: MyString
+
+two:
+  balance: MyString
+  expirationDate: MyString
+  accountStatus: MyString
+  expiredAccount: MyString
+  simcardNumber: MyString
+  phoneNumber: MyString

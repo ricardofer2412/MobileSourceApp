@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180302140900) do
+ActiveRecord::Schema.define(version: 20180320024431) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "balance"
+    t.string "expirationDate"
+    t.string "accountStatus"
+    t.string "expiredAccount"
+    t.string "simcardNumber"
+    t.string "phoneNumber"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "h2o_customers", force: :cascade do |t|
     t.string "companyName"
