@@ -38,7 +38,7 @@ class AccountsController < ApplicationController
         simcardNumber = account.simcardNumber
 
         #open Browser
-        browser = Watir::Browser.new :phantomjs
+        browser = Watir::Browser.new :chrome
         browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbEquip"
 
         #Login
@@ -87,10 +87,11 @@ class AccountsController < ApplicationController
         account.update_attribute(:phoneNumber, phoneNumber)
         account.update_attribute(:expirationDate, expiration)
         sleep(1)
-        redirect_to accounts_path and return
+
 
 
       end
+      redirect_to accounts_path and return
   end
 
   # GET /accounts/1/edit

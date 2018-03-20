@@ -25,23 +25,6 @@ ActiveRecord::Schema.define(version: 20180320030321) do
     t.string "nickname"
   end
 
-  create_table "h2o_customers", force: :cascade do |t|
-    t.string "companyName"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "h2o_re_ups", force: :cascade do |t|
-    t.string "companyName"
-    t.string "simCard"
-    t.string "phoneNumber"
-    t.date "reupDate"
-    t.date "expirationDate"
-    t.text "pinNumber"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "orders", force: :cascade do |t|
     t.string "custumer_name"
     t.integer "ponumber"
