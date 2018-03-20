@@ -1,0 +1,2 @@
+module BalanceUpdaterHelper
+end

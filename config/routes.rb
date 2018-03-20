@@ -8,4 +8,5 @@ Rails.application.routes.draw do
 
   root 'orders#index'
   post 'fetch_balance' => 'accounts#fetch_balance', as: :fetch_balance
+
 end

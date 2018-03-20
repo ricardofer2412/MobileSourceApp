@@ -39,6 +39,7 @@
   <strong>Phonenumber:</strong>
   <%= @account.phoneNumber %>
 </p>
+<%= button_to "Check Account", action: "accountUpdater"%>
 
 <%= link_to 'Edit', edit_account_path(@account) %> |
 <%= link_to 'Back', accounts_path %>
