@@ -35,7 +35,7 @@ class AccountsController < ApplicationController
         simcardNumber = account.simcardNumber
 
         #open Browser
-        browser = Watir::Browser.new :phantomjs
+        browser = Watir::Browser.new :chrome, headless: true
         browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbEquip"
 
         #Login
