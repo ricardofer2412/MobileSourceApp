@@ -3,8 +3,9 @@ class AccountsController < ApplicationController
 
   # GET /accounts
   # GET /accounts.json
+  helper_method :sort_column, :sort_direction
   def index
-    @accounts = Account.all
+    @accounts = Account.order(sort_column + " " + sort_direction)
   end
 
   # GET /accounts/1
@@ -138,7 +139,12 @@ class AccountsController < ApplicationController
     def set_account
       @account = Account.find(params[:id])
     end
-
+    def sort_column
+      Account.column_names.include?(params[:sort]) ? params[:sort] : "balance"
+    end
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
       params.require(:account).permit(:balance, :customerName, :nickname, :expirationDate, :accountStatus, :expiredAccount, :simcardNumber, :phoneNumber)
