@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 
   root 'orders#index'
   post 'fetch_balance' => 'accounts#fetch_balance', as: :fetch_balance
+  post 'fetch_new' => 'accounts#fetch_new', as: :fetch_new
 
 end
