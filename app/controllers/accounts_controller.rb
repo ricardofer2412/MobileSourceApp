@@ -52,7 +52,7 @@ class AccountsController < ApplicationController
         browser.text_field(:id => "gsm_mdn_sim").set simcardNumber
         browser.image(:src => "images/db/bt_submit.png").click
 
-        sleep (11)
+        sleep (10)
 
         if browser.element(:xpath, "//*[@id='rep_error_note']").text == "Cancelled"
           phoneNumber = browser.element(:xpath, "//*[@id='rep_error_mdn']").text
@@ -72,7 +72,7 @@ class AccountsController < ApplicationController
         browser.image(:src => "images/db/bt_submit.png").click
 
 
-        sleep(2)
+        sleep(1)
         #collect Data
         balance = browser.element(:xpath, "//*[@id='fcard_bal']").text
         expiration = browser.element(:xpath, "//*[@id='exp']").text
@@ -83,6 +83,7 @@ class AccountsController < ApplicationController
         account.update_attribute(:phoneNumber, phoneNumber)
         account.update_attribute(:expirationDate, expiration)
         sleep(1)
+        browser.close
 
 
 
