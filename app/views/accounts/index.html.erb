@@ -2,8 +2,10 @@
 
 <h1>Accounts</h1>
 <%= link_to 'New Account', new_account_path %>
-<%= button_to "Update New Accounts", action: "fetch_balance"%>
-<%= button_to "Get Balance", action: "fetch_new"%>
+<%= button_to "Update New Accounts", action: "fetch_account_info"%>
+<%= button_to "Update Account Balance", action: "fetch_acccount_balance"%>
+<%= button_to "Update All Accounts", action: "fetch_all_balance"%>
+
 <div class="container">
     <div class="row">
       <div class="table-responsive">
@@ -34,7 +36,6 @@
         <td><%= link_to 'Show', account %></td>
         <td><%= link_to 'Edit', edit_account_path(account) %></td>
         <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= button_to "Update New", action: "fetch_single"%></td>
       </tr>
     <% end %>
   </tbody>
@@ -42,4 +43,3 @@
 
 
 <%= link_to 'New Account', new_account_path %>
-<%= button_to "Update New Accounts", action: "fetch_balance"%>

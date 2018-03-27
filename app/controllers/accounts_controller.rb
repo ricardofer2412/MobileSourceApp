@@ -17,23 +17,24 @@ class AccountsController < ApplicationController
   def new
     @account = Account.new
   end
-  def fetch_single
+
+
+  def fetch_all_balance
 
     require 'watir'
     require 'nokogiri'
     require 'open-uri'
     require 'selenium-webdriver'
 
-        simcardNumber = Account.where("simcardNumber = ?", params[:simcardNumber]).first
+    Account.all.each do |account|
 
         # Credentials
         username = "29629"
         password = "1234"
 
-        #Get SimCards
-        #active
-
-                #open Browser
+        #get phone number
+        phoneNumber = account.phoneNumber
+        #open Browser
         browser = Watir::Browser.new :phantomjs
         browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbEquip"
 
@@ -42,23 +43,7 @@ class AccountsController < ApplicationController
         browser.text_field(:type => "password").set password
         browser.input(:type => "image").click
 
-        #Get SimNumber
-        browser.option(:value => "GSM").click
-        browser.text_field(:id => "gsm_mdn_sim").set simcardNumber
-        browser.image(:src => "images/db/bt_submit.png").click
-
-        sleep (10)
-
-        if browser.element(:xpath, "//*[@id='rep_error_note']").text == "Cancelled"
-          phoneNumber = browser.element(:xpath, "//*[@id='rep_error_mdn']").text
-          accountStatus =  browser.element(:xpath, "//*[@id='rep_error_note']").text
-        else
-          phoneNumber = browser.element(:xpath, "//*[@id='rep_gsm_mdn']").text
-          accountStatus = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
-        end
         sleep(1)
-
-
         browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbBalance"
 
         #get DbBalance
@@ -74,25 +59,26 @@ class AccountsController < ApplicationController
 
         #Update Account
         account.update_attribute(:balance, balance)
-        account.update_attribute(:accountStatus, accountStatus)
-        account.update_attribute(:phoneNumber, phoneNumber)
         account.update_attribute(:expirationDate, expiration)
         sleep(1)
         browser.close
 
 
 
-
+      end
       redirect_to accounts_path and return
   end
-  def fetch_new
+
+
+
+  def fetch_acccount_balance
 
     require 'watir'
     require 'nokogiri'
     require 'open-uri'
     require 'selenium-webdriver'
 
-    Account.all.each do |account|
+        Account.where(balance: [nil, ""]).each do |account|
 
         # Credentials
         username = "29629"
@@ -139,15 +125,14 @@ class AccountsController < ApplicationController
 
 
 #collect phone number
-  def fetch_balance
+  def fetch_account_info
 
     require 'watir'
     require 'nokogiri'
     require 'open-uri'
     require 'selenium-webdriver'
 
-    Account.all.each do |account|
-
+      Account.where(phoneNumber: [nil, ""]).each do |account|
         # Credentials
         username = "29629"
         password = "1234"
@@ -181,33 +166,10 @@ class AccountsController < ApplicationController
           accountStatus = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
         end
         sleep(1)
-        browser.close
 
-
-=begin
-        browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbBalance"
-
-        #get DbBalance
-        browser.option(:value => "GSM").click
-        browser.text_field(:id => "txtMDN").set phoneNumber
-        browser.image(:src => "images/db/bt_submit.png").click
-
-
-        sleep(1)
-        #collect Data
-        balance = browser.element(:xpath, "//*[@id='fcard_bal']").text
-        expiration = browser.element(:xpath, "//*[@id='exp']").text
-
-        #Update Account
-        account.update_attribute(:balance, balance)
         account.update_attribute(:accountStatus, accountStatus)
         account.update_attribute(:phoneNumber, phoneNumber)
-        account.update_attribute(:expirationDate, expiration)
-        sleep(1)
         browser.close
-
-
-=end
       end
       redirect_to accounts_path and return
   end
