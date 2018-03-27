@@ -92,7 +92,7 @@ class AccountsController < ApplicationController
     require 'open-uri'
     require 'selenium-webdriver'
 
-    Account.where(balance: [nil, ""]).each do |account|
+    Account.all.each do |account|
 
         # Credentials
         username = "29629"
@@ -101,35 +101,18 @@ class AccountsController < ApplicationController
         #Get SimCards
         #active
 
-        simcardNumber = account.simcardNumber
+        phoneNumber = account.phoneNumber
 
         #open Browser
         browser = Watir::Browser.new :phantomjs
-        browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbEquip"
 
-        #Login
+        browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbBalance"
+        #enter Credentials
+
         browser.text_field(:name => "dc").set username
         browser.text_field(:type => "password").set password
         browser.input(:type => "image").click
 
-        #Get SimNumber
-        browser.option(:value => "GSM").click
-        browser.text_field(:id => "gsm_mdn_sim").set simcardNumber
-        browser.image(:src => "images/db/bt_submit.png").click
-
-        sleep (10)
-
-        if browser.element(:xpath, "//*[@id='rep_error_note']").text == "Cancelled"
-          phoneNumber = browser.element(:xpath, "//*[@id='rep_error_mdn']").text
-          accountStatus =  browser.element(:xpath, "//*[@id='rep_error_note']").text
-        else
-          phoneNumber = browser.element(:xpath, "//*[@id='rep_gsm_mdn']").text
-          accountStatus = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
-        end
-        sleep(1)
-
-
-        browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbBalance"
 
         #get DbBalance
         browser.option(:value => "GSM").click
@@ -144,8 +127,6 @@ class AccountsController < ApplicationController
 
         #Update Account
         account.update_attribute(:balance, balance)
-        account.update_attribute(:accountStatus, accountStatus)
-        account.update_attribute(:phoneNumber, phoneNumber)
         account.update_attribute(:expirationDate, expiration)
         sleep(1)
         browser.close
@@ -156,6 +137,8 @@ class AccountsController < ApplicationController
       redirect_to accounts_path and return
   end
 
+
+#collect phone number
   def fetch_balance
 
     require 'watir'
@@ -198,8 +181,10 @@ class AccountsController < ApplicationController
           accountStatus = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
         end
         sleep(1)
+        browser.close
 
 
+=begin
         browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbBalance"
 
         #get DbBalance
@@ -222,7 +207,7 @@ class AccountsController < ApplicationController
         browser.close
 
 
-
+=end
       end
       redirect_to accounts_path and return
   end
