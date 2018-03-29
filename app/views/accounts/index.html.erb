@@ -1,10 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Accounts</h1>
-<%= link_to 'New Account', new_account_path %>
-<%= button_to "Update New Accounts", action: "fetch_account_info"%>
-<%= button_to "Update Account Balance", action: "fetch_acccount_balance"%>
-<%= button_to "Update All Accounts", action: "fetch_all_balance"%>
+<h1>NEXTEL ACCOUNTS</h1>
+<div class="container">
+  <div class="row">
+     <div class="col-sm">
+          <%= link_to 'New Account', new_account_path %>
+        </div>
+        <div class="col-sm">
+          <%= button_to "Update New Accounts", action: "fetch_account_info"%>
+        </div>
+             <div class="col-sm">
+          <%= button_to "Update Empty Balance", action: "fetch_acccount_balance"%>
+        </div>
+             <div class="col-sm">
+          <%= button_to "Update All Accounts", action: "fetch_all_balance"%>
+        </div>
+    </div>
+  </div>
 
 <div class="container">
     <div class="row">
@@ -12,14 +24,14 @@
         <table class="table table-hover">
   <thead>
     <tr>
-      <th><%= sortable "customerName"%></th>
-      <th><%= sortable "nickname"%></th>
-      <th><%= sortable"balance"%></th>
-      <th><%= sortable "expirationDate"%></th>
-      <th><%= sortable "accountStatus"%></th>
-      <th><%= sortable "simcardNumber"%></th>
-      <th><%= sortable "phoneNumber"%></th>
-      <th><%= sortable "updated_at"%></th>
+      <th><%= sortable "Customer Name"%></th>
+      <th><%= sortable "Device ID"%></th>
+      <th><%= sortable"Balance"%></th>
+      <th><%= sortable "Expiration Date"%></th>
+      <th><%= sortable "Account Status"%></th>
+      <th><%= sortable "Sim Card Number"%></th>
+      <th><%= sortable "Phone Number"%></th>
+      <th><%= sortable "Last Updated"%></th>
 
       <th colspan="3"></th>
     </tr>
