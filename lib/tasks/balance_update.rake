@@ -1,7 +1,7 @@
  desc "Fetch Balance"
 
  task :fetch_account_info => :environment do
-   
+
    require 'watir'
    require 'nokogiri'
    require 'open-uri'
