@@ -1,0 +1,4 @@
+<%= form_for @account, html: {method: :fetch_single_balance} do |f| %>
+<h2> Are you sure you want to update balance? </h2>
+<p><%= form.submit "Destroy" %> or <%= link_to "cancel", accounts_path %></p>
+<% %end %>
