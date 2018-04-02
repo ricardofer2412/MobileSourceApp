@@ -52,7 +52,8 @@
         <td><%= link_to 'Show', account %></td>
         <td><%= link_to 'Edit', edit_account_path(account) %></td>
         <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    
+        <td><%= link_to 'Get Balance', account, method: :fetch_single_balance %></td>
+
       </tr>
     <% end %>
   </tbody>

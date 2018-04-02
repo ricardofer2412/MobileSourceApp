@@ -17,13 +17,15 @@
   def new
     @account = Account.new
   end
+
   def fetch_single_balance
     require 'watir'
     require 'nokogiri'
     require 'open-uri'
     require 'selenium-webdriver'
 
-    phoneNumber = Account.where(phoneNumber: params[:phoneNumber]).first
+       Account.where(["phoneNumber =  ?", :phoneNumber]) do |account|
+         phoneNumber = account.phoneNumber
 
 
         # Credentials
@@ -61,10 +63,9 @@
         sleep(1)
         browser.close
 
+end
 
-
-
-      redirect_to accounts_path and return
+        redirect_to accounts_path and return
 
 
   end
