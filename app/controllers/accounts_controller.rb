@@ -18,6 +18,43 @@
     @account = Account.new
   end
 
+  def fetch_account
+
+    @account = Account.find(params[:id])
+    simcardNumber =  @account.simcardNumber
+
+    #open Browser
+    browser = Watir::Browser.new :phantomjs
+    browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbEquip"
+
+    #Login
+    browser.text_field(:name => "dc").set username
+    browser.text_field(:type => "password").set password
+    browser.input(:type => "image").click
+
+    #Get SimNumber
+    browser.option(:value => "GSM").click
+    browser.text_field(:id => "gsm_mdn_sim").set simcardNumber
+    browser.image(:src => "images/db/bt_submit.png").click
+
+    sleep (10)
+
+    if browser.element(:xpath, "//*[@id='rep_error_note']").text == "Cancelled"
+      phoneNumber = browser.element(:xpath, "//*[@id='rep_error_mdn']").text
+      accountStatus =  browser.element(:xpath, "//*[@id='rep_error_note']").text
+    else
+      phoneNumber = browser.element(:xpath, "//*[@id='rep_gsm_mdn']").text
+      accountStatus = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
+    end
+    sleep(1)
+
+    @account.update_attribute(:accountStatus, accountStatus)
+    @account.update_attribute(:phoneNumber, phoneNumber)
+    browser.close
+
+  redirect_to accounts_path and return
+  end
+
 
   def fetch_single_balance
 
@@ -26,8 +63,8 @@
     require 'open-uri'
     require 'selenium-webdriver'
 
-      @account  = Account.find(params[:id])
-      phoneNumber =  @account.phoneNumber
+      @account = Account.find(params[:id])
+      phoneNumber = @account.phoneNumber
 
 
         # Credentials
@@ -37,7 +74,7 @@
         #get phone number
 
         #open Browser
-        browser = Watir::Browser.new :chrome
+        browser = Watir::Browser.new :phantomjs
         browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbEquip"
 
         #Login
@@ -277,10 +314,10 @@
       @account = Account.find(params[:id])
     end
     def sort_column
-      Account.column_names.include?(params[:sort]) ? params[:sort] : "balance"
+      Account.column_names.include?(params[:sort]) ? params[:sort] : "updated_at"
     end
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params

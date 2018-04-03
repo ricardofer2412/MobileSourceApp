@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   post 'fetch_all_balance' => 'accounts#fetch_all_balance', as: :fetch_all_balance
   post '/accounts/:id' => 'accounts#fetch_single_balance', as: :fetch_single_balance
 
+
+
 end
