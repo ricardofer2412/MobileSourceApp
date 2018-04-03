@@ -18,14 +18,16 @@
     @account = Account.new
   end
 
+
   def fetch_single_balance
+
     require 'watir'
     require 'nokogiri'
     require 'open-uri'
     require 'selenium-webdriver'
 
-       Account.where(["phoneNumber =  ?", :phoneNumber]) do |account|
-         phoneNumber = account.phoneNumber
+      @account  = Account.find(params[:id])
+      phoneNumber =  @account.phoneNumber
 
 
         # Credentials
@@ -58,12 +60,12 @@
         expiration = browser.element(:xpath, "//*[@id='exp']").text
 
         #Update Account
-        account.update_attribute(:balance, balance)
-        account.update_attribute(:expirationDate, expiration)
+        @account.update_attribute(:balance, balance)
+        @account.update_attribute(:expirationDate, expiration)
         sleep(1)
         browser.close
 
-end
+
 
         redirect_to accounts_path and return
 
