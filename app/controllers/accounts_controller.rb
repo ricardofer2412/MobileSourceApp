@@ -132,7 +132,7 @@
 
       else
 
-          browser = Watir::Browser.new :chrome
+          browser = Watir::Browser.new :phantomjs
           browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbBalance"
 
           #Login
