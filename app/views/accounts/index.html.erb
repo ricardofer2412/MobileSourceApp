@@ -1,3 +1,5 @@
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>NEXTEL ACCOUNTS</h1>
@@ -7,7 +9,7 @@
      <div class="col-sm">
           <%= link_to 'New Account', new_account_path %>
         </div>
-  
+
   </div>
 
 <div class="container">
@@ -16,13 +18,13 @@
         <table class="table table-hover">
   <thead>
     <tr>
-      <th><%= sortable "customerName"%></th>
-      <th><%= sortable "nickname"%></th>
-      <th><%= sortable "balance"%></th>
+      <th><%= sortable "Customer Name"%></th>
+      <th><%= "Device"%></th>
+      <th><%= sortable "Balance"%></th>
       <th><%= sortable "expirationDate"%></th>
       <th><%= sortable "accountStatus"%></th>
-      <th><%= sortable "simcardNumber"%></th>
-      <th><%= sortable "phoneNumber"%></th>
+      <th><%= "Sim Card Number"%></th>
+      <th><%= "Phone Number"%></th>
       <th><%= sortable "updated_at"%></th>
 
       <th colspan="3"></th>
