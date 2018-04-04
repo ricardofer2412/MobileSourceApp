@@ -367,11 +367,11 @@
       @account = Account.find(params[:id])
     end
     def sortable_columns
-      ["customerName", "balance", "accountStatus", "expirationDate", "updated_at"]
+      ["customername", "balance", "accountStatus", "expirationDate", "updated_at"]
     end
     def sort_column
       sortable_columns.include?(params[:column]) ? params[:column] : "balance"
-      sortable_columns.include?(params[:column]) ? params[:column] : "customerName"
+      sortable_columns.include?(params[:column]) ? params[:column] : "customername"
     end
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
