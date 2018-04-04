@@ -41,14 +41,14 @@
 
     if browser.element(:xpath, "//*[@id='rep_error_note']").text == "Cancelled"
       phoneNumber = browser.element(:xpath, "//*[@id='rep_error_mdn']").text
-      accountStatus =  browser.element(:xpath, "//*[@id='rep_error_note']").text
+      account_status =  browser.element(:xpath, "//*[@id='rep_error_note']").text
     else
       phoneNumber = browser.element(:xpath, "//*[@id='rep_gsm_mdn']").text
-      accountStatus = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
+      account_status = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
     end
     sleep(1)
 
-    @account.update_attribute(:accountStatus, accountStatus)
+    @account.update_attribute(:account_status, account_status)
     @account.update_attribute(:phoneNumber, phoneNumber)
     browser.close
 
@@ -94,10 +94,10 @@
 
         if browser.element(:xpath, "//*[@id='rep_error_note']").text == "Cancelled"
           phoneNumber = browser.element(:xpath, "//*[@id='rep_error_mdn']").text
-          accountStatus =  browser.element(:xpath, "//*[@id='rep_error_note']").text
+          account_status =  browser.element(:xpath, "//*[@id='rep_error_note']").text
         else
           phoneNumber = browser.element(:xpath, "//*[@id='rep_gsm_mdn']").text
-          accountStatus = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
+          account_status = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
         end
         sleep(1)
 
@@ -120,8 +120,8 @@
 
         #Update Account
         @account.update_attribute(:balance, balance)
-        @account.update_attribute(:expirationDate, expiration)
-        @account.update_attribute(:accountStatus, accountStatus)
+        @account.update_attribute(:expiration_date, expiration)
+        @account.update_attribute(:account_status, account_status)
         @account.update_attribute(:phoneNumber, phoneNumber)
         sleep(1)
         browser.close
@@ -153,7 +153,7 @@
 
           #Update Account
           @account.update_attribute(:balance, balance)
-          @account.update_attribute(:expirationDate, expiration)
+          @account.update_attribute(:expiration_date, expiration)
 
           sleep(1)
           browser.close
@@ -202,7 +202,7 @@
 
         #Update Account
         account.update_attribute(:balance, balance)
-        account.update_attribute(:expirationDate, expiration)
+        account.update_attribute(:expiration_date, expiration)
         sleep(1)
         browser.close
 
@@ -256,7 +256,7 @@
 
         #Update Account
         account.update_attribute(:balance, balance)
-        account.update_attribute(:expirationDate, expiration)
+        account.update_attribute(:expiration_date, expiration)
         sleep(1)
         browser.close
 
@@ -303,14 +303,14 @@
 
         if browser.element(:xpath, "//*[@id='rep_error_note']").text == "Cancelled"
           phoneNumber = browser.element(:xpath, "//*[@id='rep_error_mdn']").text
-          accountStatus =  browser.element(:xpath, "//*[@id='rep_error_note']").text
+          account_status =  browser.element(:xpath, "//*[@id='rep_error_note']").text
         else
           phoneNumber = browser.element(:xpath, "//*[@id='rep_gsm_mdn']").text
-          accountStatus = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
+          account_status = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
         end
         sleep(1)
 
-        account.update_attribute(:accountStatus, accountStatus)
+        account.update_attribute(:account_status, account_status)
         account.update_attribute(:phoneNumber, phoneNumber)
         browser.close
       end
@@ -367,7 +367,7 @@
       @account = Account.find(params[:id])
     end
     def sortable_columns
-      ["customer_name", "balance", "accountStatus", "expirationDate", "updated_at"]
+      ["customer_name", "balance", "account_status", "expiration_date", "updated_at"]
     end
     def sort_column
       sortable_columns.include?(params[:column]) ? params[:column] : "balance"
@@ -378,6 +378,6 @@
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:balance, :customer_name, :nickname, :expirationDate, :accountStatus, :expiredAccount, :simcardNumber, :phoneNumber)
+      params.require(:account).permit(:balance, :customer_name, :nickname, :expiration_date, :account_status, :expiredAccount, :simcardNumber, :phoneNumber)
     end
 end

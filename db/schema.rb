@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404050332) do
+ActiveRecord::Schema.define(version: 20180404051223) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "balance"
-    t.string "expirationDate"
-    t.string "accountStatus"
+    t.string "expiration_date"
+    t.string "account_status"
     t.string "expiredAccount"
     t.string "simcardNumber"
     t.string "phoneNumber"
