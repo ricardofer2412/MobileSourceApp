@@ -7,16 +7,7 @@
      <div class="col-sm">
           <%= link_to 'New Account', new_account_path %>
         </div>
-        <div class="col-sm">
-          <%= button_to "Update New Accounts", action: "fetch_account_info"%>
-        </div>
-             <div class="col-sm">
-          <%= button_to "Update Empty Balance", action: "fetch_acccount_balance"%>
-        </div>
-             <div class="col-sm">
-          <%= button_to "Update All Accounts", action: "fetch_all_balance"%>
-        </div>
-    </div>
+  
   </div>
 
 <div class="container">
@@ -52,7 +43,7 @@
         <td><%= link_to 'Show', account %></td>
         <td><%= link_to 'Edit', edit_account_path(account) %></td>
         <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Get Balance', account, method: :fetch_single_balance %></td>
+        <td><%= button_to 'Get Balance', account, method: :fetch_single_balance, data: { confirm: 'Do you want to update balance?' }  %></td>
 
       </tr>
     <% end %>
