@@ -64,7 +64,9 @@
     require 'selenium-webdriver'
 
       @account = Account.find(params[:id])
+
       simcardNumber = @account.simcardNumber
+      phoneNumber = @account.phoneNumber
 
 
         # Credentials
@@ -72,9 +74,9 @@
         password = "1234"
 
         #get phone number
-
+        if phoneNumber == nil
         #open Browser
-        browser = Watir::Browser.new :chrome
+        browser = Watir::Browser.new :phantomjs
 
         browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbEquip"
 
@@ -88,7 +90,7 @@
         browser.text_field(:id => "gsm_mdn_sim").set simcardNumber
         browser.image(:src => "images/db/bt_submit.png").click
 
-        sleep (10)
+        sleep (8)
 
         if browser.element(:xpath, "//*[@id='rep_error_note']").text == "Cancelled"
           phoneNumber = browser.element(:xpath, "//*[@id='rep_error_mdn']").text
@@ -104,12 +106,6 @@
         browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbBalance"
 
         #Login
-        browser.text_field(:name => "dc").set username
-        browser.text_field(:type => "password").set password
-        browser.input(:type => "image").click
-
-        sleep(1)
-
 
         #get DbBalance
         browser.option(:value => "GSM").click
@@ -134,7 +130,36 @@
 
         redirect_to accounts_path and return
 
+      else
 
+          browser = Watir::Browser.new :chrome
+          browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbBalance"
+
+          #Login
+          browser.text_field(:name => "dc").set username
+          browser.text_field(:type => "password").set password
+          browser.input(:type => "image").click
+          sleep(1)
+          #get DbBalance
+          browser.option(:value => "GSM").click
+          browser.text_field(:id => "txtMDN").set phoneNumber
+          browser.image(:src => "images/db/bt_submit.png").click
+
+
+          sleep(1)
+          #collect Data
+          balance = browser.element(:xpath, "//*[@id='fcard_bal']").text
+          expiration = browser.element(:xpath, "//*[@id='exp']").text
+
+          #Update Account
+          @account.update_attribute(:balance, balance)
+          @account.update_attribute(:expirationDate, expiration)
+
+          sleep(1)
+          browser.close
+
+          redirect_to accounts_path and return
+        end
   end
 
   def fetch_all_balance
