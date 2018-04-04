@@ -367,13 +367,13 @@
       @account = Account.find(params[:id])
     end
     def sortable_columns
-      ["customerName","balance","accountStatus","expirationDate","updated_at"]
+      ["customerName", "balance", "accountStatus", "expirationDate", "updated_at"]
     end
     def sort_column
-    Account.column_names.include?(params[:column]) ? params[:column] : "updated_at"
+      sortable_columns.include?(params[:column]) ? params[:column] : "balance"
     end
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
