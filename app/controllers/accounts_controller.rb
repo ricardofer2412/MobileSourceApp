@@ -5,7 +5,7 @@
   # GET /accounts.json
   helper_method :sort_column, :sort_direction
   def index
-    @accounts = Account.order("#{sort_column} #{sort_direction}")
+    @accounts = Account.order(sort_column + " " + sort_direction)
   end
 
   # GET /accounts/1
@@ -370,10 +370,10 @@
       ["customerName","balance","accountStatus","expirationDate","updated_at"]
     end
     def sort_column
-      sortable_columns.include?(params[:column]) ? params[:column] : "updated_at"
+    Account.column_names.include?(params[:column]) ? params[:column] : "updated_at"
     end
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
