@@ -367,7 +367,7 @@
       @account = Account.find(params[:id])
     end
     def sortable_columns
-      ["customername", "balance", "accountStatus", "expirationDate", "updated_at"]
+      ["customer_name", "balance", "accountStatus", "expirationDate", "updated_at"]
     end
     def sort_column
       sortable_columns.include?(params[:column]) ? params[:column] : "balance"
@@ -378,6 +378,6 @@
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:balance, :customerName, :nickname, :expirationDate, :accountStatus, :expiredAccount, :simcardNumber, :phoneNumber)
+      params.require(:account).permit(:balance, :customer_name, :nickname, :expirationDate, :accountStatus, :expiredAccount, :simcardNumber, :phoneNumber)
     end
 end
