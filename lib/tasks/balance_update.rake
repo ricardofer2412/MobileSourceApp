@@ -35,14 +35,14 @@
 
        if browser.element(:xpath, "//*[@id='rep_error_note']").text == "Cancelled"
          phoneNumber = browser.element(:xpath, "//*[@id='rep_error_mdn']").text
-         accountStatus =  browser.element(:xpath, "//*[@id='rep_error_note']").text
+         account_status =  browser.element(:xpath, "//*[@id='rep_error_note']").text
        else
          phoneNumber = browser.element(:xpath, "//*[@id='rep_gsm_mdn']").text
-         accountStatus = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
+         account_status = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
        end
        sleep(1)
 
-       account.update_attribute(:accountStatus, accountStatus)
+       account.update_attribute(:account_status, account_status)
        account.update_attribute(:phoneNumber, phoneNumber)
        browser.close
 
@@ -91,7 +91,7 @@
 
        #Update Account
        account.update_attribute(:balance, balance)
-       account.update_attribute(:expirationDate, expiration)
+       account.update_attribute(:expiration_date, expiration)
        sleep(1)
        browser.close
 
@@ -139,7 +139,7 @@
 
          #Update Account
          account.update_attribute(:balance, balance)
-         account.update_attribute(:expirationDate, expiration)
+         account.update_attribute(:expiration_date, expiration)
          sleep(1)
          browser.close
 
