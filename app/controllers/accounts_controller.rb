@@ -1,11 +1,12 @@
  class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :edit, :update, :destroy]
 
+
   # GET /accounts
   # GET /accounts.json
   helper_method :sort_column, :sort_direction
   def index
-    @accounts = Account.order("#{sort_column} #{sort_direction}")
+    @accounts = Account.order("#{sort_column} #{sort_direction}").search(params[:search])
   end
 
   # GET /accounts/1
