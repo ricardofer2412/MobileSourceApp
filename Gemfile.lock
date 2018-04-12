@@ -232,6 +232,7 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
+  bcrypt
   bootstrap-datepicker-rails
   bootstrap-sass (~> 3.2.0)
   byebug

@@ -22,6 +22,7 @@ group :development do
   gem 'sqlite3'
 end
 
+gem 'bcrypt', platforms: :ruby
 
 gem 'simple_form'
 # Use Puma as the app server
