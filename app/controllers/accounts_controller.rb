@@ -22,7 +22,7 @@
   def fetch_account
 
     @account = Account.find(params[:id])
-    simcardNumber =  @account.simcardNumber
+    sim_card_number =  @account.sim_card_number
 
     #open Browser
     browser = Watir::Browser.new :phantomjs
@@ -35,7 +35,7 @@
 
     #Get SimNumber
     browser.option(:value => "GSM").click
-    browser.text_field(:id => "gsm_mdn_sim").set simcardNumber
+    browser.text_field(:id => "gsm_mdn_sim").set sim_card_number
     browser.image(:src => "images/db/bt_submit.png").click
 
     sleep (10)
@@ -66,7 +66,7 @@
 
       @account = Account.find(params[:id])
 
-      simcardNumber = @account.simcardNumber
+      sim_card_number = @account.sim_card_number
       phoneNumber = @account.phoneNumber
 
 
@@ -88,7 +88,7 @@
 
         #Get SimNumber
         browser.option(:value => "GSM").click
-        browser.text_field(:id => "gsm_mdn_sim").set simcardNumber
+        browser.text_field(:id => "gsm_mdn_sim").set sim_card_number
         browser.image(:src => "images/db/bt_submit.png").click
 
         sleep (8)
@@ -284,7 +284,7 @@
         #Get SimCards
         #active
 
-        simcardNumber = account.simcardNumber
+        sim_card_number = account.sim_card_number
 
         #open Browser
         browser = Watir::Browser.new :phantomjs
@@ -297,7 +297,7 @@
 
         #Get SimNumber
         browser.option(:value => "GSM").click
-        browser.text_field(:id => "gsm_mdn_sim").set simcardNumber
+        browser.text_field(:id => "gsm_mdn_sim").set sim_card_number
         browser.image(:src => "images/db/bt_submit.png").click
 
         sleep (10)
@@ -371,14 +371,14 @@
       ["customer_name", "balance", "account_status", "expiration_date", "updated_at"]
     end
     def sort_column
-      sortable_columns.include?(params[:column]) ? params[:column] : "customer_name"
+      sortable_columns.include?(params[:column]) ? params[:column] : "updated_at"
 
     end
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:balance, :customer_name, :nickname, :expiration_date, :account_status, :expiredAccount, :simcardNumber, :phoneNumber)
+      params.require(:account).permit(:balance, :customer_name, :nickname, :expiration_date, :account_status, :expiredAccount, :sim_card_number, :phoneNumber)
     end
 end
