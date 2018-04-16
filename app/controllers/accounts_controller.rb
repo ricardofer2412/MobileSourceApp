@@ -371,11 +371,11 @@
       ["customer_name", "balance", "account_status", "expiration_date", "updated_at"]
     end
     def sort_column
-      sortable_columns.include?(params[:column]) ? params[:column] : "balance"
+      sortable_columns.include?(params[:column]) ? params[:column] : "customer_name"
 
     end
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
