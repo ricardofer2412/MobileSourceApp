@@ -88,10 +88,15 @@
        #collect Data
        balance = browser.element(:xpath, "//*[@id='fcard_bal']").text
        expiration = browser.element(:xpath, "//*[@id='exp']").text
-
+       account_plan = browser.element(:xpath, "//*[@id='plan']").text
+       account_notes = browser.element(:xpath, "//*[@id='note']").text
        #Update Account
        account.update_attribute(:balance, balance)
        account.update_attribute(:expiration_date, expiration)
+       account.update_attribute(:account_status, account_status)
+       account.update_attribute(:phoneNumber, phoneNumber)
+       account.update_attribute(:account_plan, account_plan)
+       account.update_attribute(:account_notes, account_notes)
        sleep(1)
        browser.close
 
@@ -136,10 +141,16 @@
          #collect Data
          balance = browser.element(:xpath, "//*[@id='fcard_bal']").text
          expiration = browser.element(:xpath, "//*[@id='exp']").text
-
+         account_plan = browser.element(:xpath, "//*[@id='plan']").text
+         account_notes = browser.element(:xpath, "//*[@id='note']").text
          #Update Account
          account.update_attribute(:balance, balance)
          account.update_attribute(:expiration_date, expiration)
+         account.update_attribute(:account_status, account_status)
+         account.update_attribute(:phoneNumber, phoneNumber)
+         account.update_attribute(:account_plan, account_plan)
+         account.update_attribute(:account_notes, account_notes)
+
          sleep(1)
          browser.close
 
