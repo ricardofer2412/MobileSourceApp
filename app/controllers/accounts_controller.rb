@@ -77,7 +77,7 @@
         #get phone number
         if phoneNumber == nil
         #open Browser
-        browser = Watir::Browser.new :phantomjs
+        browser = Watir::Browser.new :chrome
 
         browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbEquip"
 
@@ -114,26 +114,29 @@
         browser.image(:src => "images/db/bt_submit.png").click
 
 
+
         sleep(1)
         #collect Data
         balance = browser.element(:xpath, "//*[@id='fcard_bal']").text
         expiration = browser.element(:xpath, "//*[@id='exp']").text
-
+        account_plan = browser.element(:xpath, "//*[@id='plan']").text
+        account_notes = browser.element(:xpath, "//*[@id='note']").text
         #Update Account
         @account.update_attribute(:balance, balance)
         @account.update_attribute(:expiration_date, expiration)
         @account.update_attribute(:account_status, account_status)
         @account.update_attribute(:phoneNumber, phoneNumber)
+        @account.update_attribute(:account_plan, account_plan)
+        @account.update_attribute(:account_notes, account_notes)
         sleep(1)
+
         browser.close
-
-
 
         redirect_to accounts_path and return
 
       else
 
-          browser = Watir::Browser.new :phantomjs
+          browser = Watir::Browser.new :chrome
           browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbBalance"
 
           #Login
@@ -151,10 +154,15 @@
           #collect Data
           balance = browser.element(:xpath, "//*[@id='fcard_bal']").text
           expiration = browser.element(:xpath, "//*[@id='exp']").text
-
+          account_plan = browser.element(:xpath, "//*[@id='plan']").text
+          account_notes = browser.element(:xpath, "//*[@id='note']").text
           #Update Account
           @account.update_attribute(:balance, balance)
           @account.update_attribute(:expiration_date, expiration)
+          @account.update_attribute(:account_status, account_status)
+          @account.update_attribute(:phoneNumber, phoneNumber)
+          @account.update_attribute(:account_plan, account_plan)
+          @account.update_attribute(:account_notes, account_notes)
 
           sleep(1)
           browser.close
@@ -215,108 +223,7 @@
 
 
 
-  def fetch_acccount_balance
 
-    require 'watir'
-    require 'nokogiri'
-    require 'open-uri'
-    require 'selenium-webdriver'
-
-        Account.where(balance: [nil, ""]).each do |account|
-
-        # Credentials
-        username = "29629"
-        password = "1234"
-
-        #Get SimCards
-        #active
-
-        phoneNumber = account.phoneNumber
-
-        #open Browser
-        browser = Watir::Browser.new :phantomjs
-
-        browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbBalance"
-        #enter Credentials
-
-        browser.text_field(:name => "dc").set username
-        browser.text_field(:type => "password").set password
-        browser.input(:type => "image").click
-
-
-        #get DbBalance
-        browser.option(:value => "GSM").click
-        browser.text_field(:id => "txtMDN").set phoneNumber
-        browser.image(:src => "images/db/bt_submit.png").click
-
-
-        sleep(1)
-        #collect Data
-        balance = browser.element(:xpath, "//*[@id='fcard_bal']").text
-        expiration = browser.element(:xpath, "//*[@id='exp']").text
-
-        #Update Account
-        account.update_attribute(:balance, balance)
-        account.update_attribute(:expiration_date, expiration)
-        sleep(1)
-        browser.close
-
-
-
-      end
-      redirect_to accounts_path and return
-  end
-
-
-#collect phone number
-  def fetch_account_info
-
-    require 'watir'
-    require 'nokogiri'
-    require 'open-uri'
-    require 'selenium-webdriver'
-
-      Account.where(phoneNumber: [nil, ""]).each do |account|
-        # Credentials
-        username = "29629"
-        password = "1234"
-
-        #Get SimCards
-        #active
-
-        sim_card_number = account.sim_card_number
-
-        #open Browser
-        browser = Watir::Browser.new :phantomjs
-        browser.goto  "https://www.h2odealer.com/mainCtrl.php?page=DbEquip"
-
-        #Login
-        browser.text_field(:name => "dc").set username
-        browser.text_field(:type => "password").set password
-        browser.input(:type => "image").click
-
-        #Get SimNumber
-        browser.option(:value => "GSM").click
-        browser.text_field(:id => "gsm_mdn_sim").set sim_card_number
-        browser.image(:src => "images/db/bt_submit.png").click
-
-        sleep (10)
-
-        if browser.element(:xpath, "//*[@id='rep_error_note']").text == "Cancelled"
-          phoneNumber = browser.element(:xpath, "//*[@id='rep_error_mdn']").text
-          account_status =  browser.element(:xpath, "//*[@id='rep_error_note']").text
-        else
-          phoneNumber = browser.element(:xpath, "//*[@id='rep_gsm_mdn']").text
-          account_status = browser.element(:xpath, "//*[@id='rep_gsm_mdn_status']").text
-        end
-        sleep(1)
-
-        account.update_attribute(:account_status, account_status)
-        account.update_attribute(:phoneNumber, phoneNumber)
-        browser.close
-      end
-      redirect_to accounts_path and return
-  end
 
   # GET /accounts/1/edit
   def edit
@@ -375,10 +282,10 @@
 
     end
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:balance, :customer_name, :nickname, :expiration_date, :account_status, :expiredAccount, :sim_card_number, :phoneNumber)
+      params.require(:account).permit(:balance, :customer_name,:account_notes, :nickname, :expiration_date, :account_status, :expiredAccount, :sim_card_number, :phoneNumber)
     end
 end
