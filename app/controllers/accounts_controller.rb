@@ -226,11 +226,6 @@
       end
       redirect_to accounts_path and return
   end
-
-
-
-
-
   # GET /accounts/1/edit
   def edit
   end

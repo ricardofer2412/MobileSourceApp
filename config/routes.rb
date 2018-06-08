@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
 
+
+
   resources :accounts
   devise_for :users
   resources :orders
+  resources :balances
+
+
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -12,6 +18,9 @@ Rails.application.routes.draw do
   post 'fetch_all_balance' => 'accounts#fetch_all_balance', as: :fetch_all_balance
   post '/accounts/:id' => 'accounts#fetch_single_balance', as: :fetch_single_balance
   post '/accounts/:id' => 'account#fetch_account', as: :fetch_account
+
+  put '/balances', to: 'balances#get_balance', as: 'get_balance'
+
 
 
 

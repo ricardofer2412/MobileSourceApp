@@ -1,0 +1,15 @@
+
+
+<h1>Check Balance</h1>
+<div>
+<%= form_tag({:action => 'get_balance'}, method: 'put') do %>
+  <p>
+    <%= label_tag(:sim_number, "Enter Sim Card Number") %>
+    <%= text_field_tag(:sim_number, params[:sim_number]) %>
+    <%= submit_tag "Get Balance" %>
+  </p>
+<% end %>
+</div>
+<p><strong> Sim Card :</strong> <%=@balance %> </p>
+<p><strong> Balance: </strong>  <%=@balance%> </p>
+<p><strong> Expiration Date: </strong> <%=@expiration%> </p>
