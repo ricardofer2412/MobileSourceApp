@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Imei:</strong>
+  <%= @unlock.imei %>
+</p>
+
+<p>
+  <strong>Request number:</strong>
+  <%= @unlock.request_number %>
+</p>
+
+<p>
+  <strong>Date submitted:</strong>
+  <%= @unlock.date_submitted %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @unlock.status %>
+</p>
+
+<%= link_to 'Edit', edit_unlock_path(@unlock) %> |
+<%= link_to 'Back', unlocks_path %>

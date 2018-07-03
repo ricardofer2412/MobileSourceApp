@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  imei: MyString
+  request_number: MyString
+  date_submitted: 2018-07-03
+  status: MyString
+
+two:
+  imei: MyString
+  request_number: MyString
+  date_submitted: 2018-07-03
+  status: MyString

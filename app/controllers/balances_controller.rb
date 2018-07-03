@@ -1,5 +1,6 @@
 class BalancesController < ApplicationController
   def index
+
   end
   def show
   end
@@ -52,19 +53,20 @@ class BalancesController < ApplicationController
         browser.option(:value => "GSM").click
         browser.text_field(:id => "txtMDN").set phoneNumber
         browser.image(:src => "images/db/bt_submit.png").click
-
+        sleep(2)
         balance = browser.element(:xpath, "//*[@id='fcard_bal']").text
         expiration = browser.element(:xpath, "//*[@id='exp']").text
         account_plan = browser.element(:xpath, "//*[@id='plan']").text
         account_notes = browser.element(:xpath, "//*[@id='note']").text
-
+        puts balance
         sleep(1)
         #collect Data
-        @sim_number = "Sim Card Number is: " + sim_card_number
+        @sim_number = sim_card_number
         @balance = balance
         @expiration = expiration
         @account_plan = account_plan
-        @account_notes = account_notes
+        @account_notes = account_
+        notes
         #Update Account
         browser.close
         redirect_to balances_path and return

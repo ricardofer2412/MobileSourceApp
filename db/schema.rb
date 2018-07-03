@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180603011900) do
+ActiveRecord::Schema.define(version: 20180703172144) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "balance"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 20180603011900) do
     t.date "due_date"
     t.string "incoming_tracking"
     t.string "outgoing_tracking"
+  end
+
+  create_table "unlocks", force: :cascade do |t|
+    t.string "imei"
+    t.string "request_number"
+    t.date "date_submitted"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

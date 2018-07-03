@@ -7,7 +7,7 @@
     <title><%= content_for?(:title) ? yield(:title) : "Mobilesourceapp" %></title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag "application", :media => "all" %>
+   <%= stylesheet_link_tag "application", :media => "all" %>
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
     <!-- Size should be 144 x 144 pixels -->
@@ -39,7 +39,7 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li><%= link_to "Orders", orders_path%></li>
-            <li><%= link_to "H2O", accounts_path%></li>
+            <li><%= link_to "AT&T Unlocks", unlocks_path%></li>
           </ul>
         </div>
       </div>

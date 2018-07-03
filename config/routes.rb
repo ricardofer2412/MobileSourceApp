@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
 
+  resources :unlocks
   resources :accounts
   devise_for :users
   resources :orders

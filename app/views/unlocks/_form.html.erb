@@ -1,0 +1,19 @@
+<%= simple_form_for(@unlock) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+    <%= f.input :imei %>
+
+    <%= f.input :request_number %>
+
+    <%= f.input :date_submitted %>
+
+    <%= f.input :status %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
