@@ -1,0 +1,17 @@
+<%= simple_form_for(@repair) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+    <%= f.input :cellphone_model %>
+
+    <%= f.input :repair_price %>
+
+    <%= f.input :part_cost %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
